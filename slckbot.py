@@ -1,11 +1,11 @@
 import asyncio
 import json
+import os
 
 import websockets
 from slacker import Slacker
 
-# BotUserOauth = os.environ["BOT_USER_OAUTH"]
-BotUserOauth = 'xoxb-392235298884-528005666023-Wx5NDEqwE2xh37nvCrzEFmmV'
+BotUserOauth = os.environ["BOT_USER_OAUTH"]
 
 token = BotUserOauth
 slack = Slacker(token)
@@ -31,12 +31,6 @@ loop = asyncio.new_event_loop()
 asyncio.set_event_loop(loop)
 asyncio.get_event_loop().run_until_complete(execute_bot())
 asyncio.get_event_loop().run_forever()
-
-
-
-
-
-
 
 
 def slack_notify(text=None, channel='random', username="알림봇", attachments=None):
