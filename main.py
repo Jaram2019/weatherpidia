@@ -2,7 +2,13 @@ from selenium import webdriver
 
 path = "./chromedriver.exe"
 
-driver = webdriver.Chrome(path)
+# Headless Mode 옵션 추가
+options = webdriver.ChromeOptions()
+options.add_argument('headless')
+options.add_argument('window-size=1920x1080')
+options.add_argument("disable-gpu")
+
+driver = webdriver.Chrome(path, chrome_options=options)
 driver.get('http://www.google.com')
 driver.implicitly_wait(2)
 searchbox = driver.find_element_by_name("q")
