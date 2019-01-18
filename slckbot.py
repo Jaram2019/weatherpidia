@@ -2,6 +2,7 @@ import asyncio
 import json
 import os
 
+import crawler
 import websockets
 from slacker import Slacker
 
@@ -23,6 +24,8 @@ async def execute_bot():
         # print(message_json['type'])
         if 'content' in message_json:
             print(message_json['content'])
+            data_string = crawler.weather_crawling(message_json['text'])
+            slack_notify(data_string, '#random', username="날씨봇")
         else:
             print(message_json)
 
