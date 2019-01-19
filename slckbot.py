@@ -1,13 +1,12 @@
 import json
-import os
 
 import websocket
 from slacker import Slacker
 
 import crawler as cr
 
-BotUserOauth = os.environ["BOT_USER_OAUTH"]
-
+# BotUserOauth = os.environ["BOT_USER_OAUTH"]
+BotUserOauth = 'xoxb-392235298884-527114243890-bdivuJ0pkUUUJ3SpqjkBt5YC'
 
 token = BotUserOauth
 slack = Slacker(token)
@@ -21,10 +20,11 @@ def run():
         try:
             msg = json.loads(ws.recv())
             print(msg)
-            if 'text' in msg.keys() and msg['sub_type'] != 'bot_message':
-                slack.chat.post_message(msg['channel'], msg['text'] + "의 날씨정보를 가져오고 있습니다. 잠시만 기다려 주세요..")
-                result = cr.weather_crawling(msg['text'])
-                slack.chat.post_message(msg['channel'], result)
+            if 'text' in msg.keys():
+                if 'sub_type' not in msg.keys():
+                    slack.chat.post_message(msg['channel'], msg['text'] + "의 날씨정보를 가져오고 있습니다. 잠시만 기다려 주세요..")
+                    result = cr.weather_crawling(msg['text'])
+                    slack.chat.post_message(msg['channel'], result)
                 # break
                 # return
         except websocket.WebSocketTimeoutException:
@@ -35,7 +35,7 @@ def run():
             # break
             return
         except Exception as e:
-            print(e)
+            print("error : ", e)
             # break
             return
 
