@@ -1,5 +1,6 @@
 import json
 
+
 import websocket
 from slacker import Slacker
 
@@ -60,4 +61,5 @@ run()
 
 
 def slack_notify(text=None, channel='random', username="Weatherpidia", attachments=None):
+
     slack.chat.post_message(text=text, channel=channel, username=username, attachments=attachments)
