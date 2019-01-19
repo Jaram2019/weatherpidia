@@ -1,5 +1,6 @@
 from selenium import webdriver
 path = "./chromedriver.exe"
+path_linux = "./chromedriver"
 
 # Headless Mode 옵션 추가
 options = webdriver.ChromeOptions()
@@ -9,7 +10,7 @@ options.add_argument("disable-gpu")
 
 
 def weather_crawling(input_location):   # input_location: 유저가 입력한 지역
-    driver = webdriver.Chrome(path, chrome_options=options)
+    driver = webdriver.Chrome(path_linux, chrome_options=options)  # add path for linux(HEROKU)
     driver.get('http://www.google.com')
     # driver.implicitly_wait(2)
     searchbox = driver.find_element_by_name("q")
