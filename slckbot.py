@@ -22,7 +22,7 @@ def run():
             msg = json.loads(ws.recv())
             print(msg)
             if 'text' in msg.keys():
-                if 'sub_type' not in msg.keys():
+                if 'user' in msg:
                     slack.chat.post_message(msg['channel'], msg['text'] + "의 날씨정보를 가져오고 있습니다. 잠시만 기다려 주세요..")
                     result = cr.weather_crawling(msg['text'])
                     slack.chat.post_message(msg['channel'], result)
