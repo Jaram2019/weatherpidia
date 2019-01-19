@@ -1,2 +1,4 @@
 beautifulsoup4==4.7.1
 selenium==3.141.0
+websocket-client==0.54.0
+slacker==0.12.0
