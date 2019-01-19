@@ -1,12 +1,13 @@
 import json
+import os
 
 import websocket
 from slacker import Slacker
 
 import crawler as cr
 
-# BotUserOauth = os.environ["BOT_USER_OAUTH"]
-BotUserOauth = 'xoxb-392235298884-527114243890-bdivuJ0pkUUUJ3SpqjkBt5YC'
+BotUserOauth = os.environ["BOT_USER_OAUTH"]
+
 
 token = BotUserOauth
 slack = Slacker(token)
